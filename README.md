@@ -1,0 +1,1 @@
+This project is a Retrieval-Augmented Generation system where user queries are processed by retrieving relevant document chunks from a vector database and then generating accurate responses using a language model. It improves answer quality by combining retrieval and generation, reducing hallucination and enabling domain-specific question answering
