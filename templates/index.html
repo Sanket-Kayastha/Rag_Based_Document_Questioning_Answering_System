@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RAG PDF Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>📄 RAG PDF Assistant</h1>
+
+    <!-- Upload Section -->
+    <div class="card">
+        <h2>Upload PDF</h2>
+        <form id="uploadForm">
+            <input type="file" id="fileInput" required>
+            <button type="submit">Upload</button>
+        </form>
+        <p id="uploadStatus"></p>
+    </div>
+
+    <!-- Ask Section -->
+    <div class="card">
+        <h2>Ask Question</h2>
+        <input type="text" id="question" placeholder="Ask something...">
+        <button onclick="askQuestion()">Ask</button>
+        <p id="answer"></p>
+    </div>
+</div>
+
+<script>
+document.getElementById("uploadForm").onsubmit = async function(e) {
+    e.preventDefault();
+
+    let fileInput = document.getElementById("fileInput");
+
+    if (!fileInput.files[0]) {
+        document.getElementById("uploadStatus").innerText = "❌ Select a file";
+        return;
+    }
+
+    let formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    try {
+        let res = await fetch("/upload", {
+            method: "POST",
+            body: formData
+        });
+
+        let data = await res.json();
+
+        if (res.ok) {
+            document.getElementById("uploadStatus").innerText = data.message;
+        } else {
+            document.getElementById("uploadStatus").innerText = data.error;
+        }
+
+    } catch (err) {
+        document.getElementById("uploadStatus").innerText = "❌ Upload failed";
+    }
+};
+
+
+async function askQuestion() {
+    let question = document.getElementById("question").value;
+
+    if (!question.trim()) {
+        document.getElementById("answer").innerText = "❌ Enter a question";
+        return;
+    }
+
+    try {
+        let res = await fetch("/ask", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ question: question })
+        });
+
+        let data = await res.json();
+
+        if (res.ok) {
+            document.getElementById("answer").innerText = data.answer;
+        } else {
+            document.getElementById("answer").innerText = data.error;
+        }
+
+    } catch (err) {
+        document.getElementById("answer").innerText = "❌ Error occurred";
+    }
+}
+</script>
+
+</body>
+</html>
