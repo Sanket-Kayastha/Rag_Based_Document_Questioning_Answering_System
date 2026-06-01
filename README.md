@@ -10,7 +10,16 @@ Generation: The retrieved information is then passed into a language model, whic
 
 This hybrid method reduces hallucinations (made-up answers) and ensures responses are grounded in actual data.
 
+How It Works (Step-by-Step)
+User Query → You ask a question.
 
+Embedding & Search → The system converts your query into a vector and searches a database for semantically similar document chunks.
+
+Retrieve Context → Relevant passages are pulled out.
+
+Augment Input → These passages are added to the language model’s prompt.
+
+Generate Answer → The model produces a response that is both fluent and factually supported.
 
 [RAG-Based Document Question Answering System.pdf](https://github.com/user-attachments/files/27711667/RAG-Based.Document.Question.Answering.System.pdf)
 
