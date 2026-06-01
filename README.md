@@ -21,5 +21,16 @@ Augment Input → These passages are added to the language model’s prompt.
 
 Generate Answer → The model produces a response that is both fluent and factually supported.
 
+Benefits
+Accuracy: Answers are grounded in retrieved documents.
+
+Domain Adaptability: Works well for specialized fields (medicine, law, research).
+
+Reduced Hallucination: Less chance of the model inventing facts.
+
+Scalability: Can handle large document collections.
+
+
+
 [RAG-Based Document Question Answering System.pdf](https://github.com/user-attachments/files/27711667/RAG-Based.Document.Question.Answering.System.pdf)
 
