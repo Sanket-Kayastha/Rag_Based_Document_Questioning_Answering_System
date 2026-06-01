@@ -30,6 +30,28 @@ Reduced Hallucination: Less chance of the model inventing facts.
 
 Scalability: Can handle large document collections.
 
+Working:
+
+User uploads documents (PDF/Text)
+            ↓
+System extracts, cleans & splits data (chunking)
+            ↓
+System converts data into embeddings & stores in vector 
+database
+↓
+WORKING
+User asks a query through interface
+↓
+System converts query into vector (query processing)
+↓
+System retrieves most relevant document chunks
+↓
+System generates answer using AI model (RAG)
+↓
+System displays accurate, context-based response
+↓
+System stores conversation for future context (memory)
+
 
 
 [RAG-Based Document Question Answering System.pdf](https://github.com/user-attachments/files/27711667/RAG-Based.Document.Question.Answering.System.pdf)
